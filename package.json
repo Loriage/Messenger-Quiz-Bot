@@ -1,0 +1,30 @@
+{
+  "name": "messenger-quiz-bot",
+  "version": "1.0.0",
+  "description": "A Messenger Quiz Bot engine. You just need to write your questions on a json file with specific format, create a Facebook-Messenger app and your quiz bot is ready! ",
+  "main": "app.js",
+  "dependencies": {
+    "bootbot": "^1.1.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loriage/Messenger-Quiz-Bot.git"
+  },
+  "keywords": [
+    "Messenger",
+    "Quiz",
+    "Bot"
+  ],
+  "author": "Bruno \"Loriage\" Durand, Vincent Ferrard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Loriage/Messenger-Quiz-Bot/issues"
+  },
+  "homepage": "https://github.com/Loriage/Messenger-Quiz-Bot#readme"
+}

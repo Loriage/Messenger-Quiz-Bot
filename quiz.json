@@ -1,0 +1,5 @@
+[
+    "1:\"Here is your first question. If you answer yes, you'll jump to the second question. If no, you'll jump to the third question.\", Yes:2, No:3",
+    "2:\"You can use this syntax for making decisions trees, quiz, textuals game...\", Wow!:3, Awesome!!!:3",
+    "3:\"That's all for the tutorial format. Go back to the first question?\", Yes:1, No:3"
+]
