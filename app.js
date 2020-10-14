@@ -12,42 +12,54 @@ const bot = new BootBot({
 });
 
 function parse(index) {
-    var question = {
-        "question": "",
-        "response": []
-    };
-    var line = quiz[index - 1];
+  var question = {
+      "question": "",
+      "response": {
+        values: [],
+        goto: [],
+      }
+  };
+  var line = rgpd[index - 1];
 
-    question["question"] = line.split('\"')[1];
-    
-    line = line.split("\"")[2]
-            .substring(1)
-            .replace(/ /g, '');
+  question["question"] = line.split('\"')[1];
+  
+  line = line.split("\"")[2]
+          .substring(1);
 
-    line.split(',').forEach(function (e) {
-        var val = e.split(':');
-        question["response"].push({ value: val[0], goto: val[1] });
-    });
-    return question;
+  line.split(',').forEach(function (e) {
+      var val = e.trim().split(':');
+      question["response"]["values"].push(val[0]);
+      question["response"]["goto"].push(val[1]);
+  });
+  return question;
 }
 
 const askQuestion = (convo) => {
   if (!this.index) this.index = 1;
   const tab = parse(this.index);
+  const options = { typing: true };
   
-  const question = () => (
-    convo.say({
-      text: tab.question,
-      quickReplies: [tab.response[0].value, tab.response[1].value]
-    })
-  );
+  const question = () => {
+    if (tab.response.values[0]) {
+      convo.say({
+        text: tab.question,
+        quickReplies: tab.response.values,
+      })
+    } else {
+      convo.say(tab.question, options)
+    }
+  };
   const answer = (payload, convo) => {
     const options = { typing: true };
-    if (payload.message.text === tab.response[0].value) {
-      this.index = tab.response[0].goto;
-    } else {
-      this.index = tab.response[1].goto;
+    if (!payload.message) {
+      this.index = 1;
+      convo.end();
     }
+    const isSameValue = (element) => element === payload.message.text;
+    let i = tab.response.values.findIndex(isSameValue);
+    if (i === -1) i = 0;
+    this.index = tab.response.goto[i];
+
     askQuestion(convo);
   };
   convo.ask(question, answer);
