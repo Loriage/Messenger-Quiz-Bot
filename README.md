@@ -44,7 +44,6 @@ Here is an real example:
 
 **Bruno "Loriage" Durand**
 * [Github/Loriage](https://github.com/Loriage)
-* [Twitter/Loriage](https://twitter.com/Loriage_)
 
 **Vincent Ferrard**
 * [Github/Vincent-Ferrard](https://github.com/Vincent-Ferrard)
